@@ -37,7 +37,9 @@
 				<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 				<key>CFBundleURLSchemes</key>
 				<array>
-					<string>lpkt.cn</string>
+					<string>lollipopkit.com</string>
+					<!-- Sign-in redirect, `Lkc.redirectUrl`. -->
+					<string>llmbox</string>
 				</array>
 			</dict>
 		</array>

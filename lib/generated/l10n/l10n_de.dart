@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'l10n.dart';
 
 // ignore_for_file: type=lint
@@ -9,76 +10,23 @@ class AppLocalizationsDe extends AppLocalizations {
   AppLocalizationsDe([String locale = 'de']) : super(locale);
 
   @override
-  String get apiUrlV1Tip =>
-      'Ähnlich wie https://api.openai.com/v1 (mit dem abschließenden /v1). Soll diese URL weiterhin verwendet werden?';
-
-  @override
-  String get assistant => 'Assistent';
-
-  @override
-  String get attention => 'Achtung';
-
-  @override
-  String get audio => 'Audio';
-
-  @override
   String get auto => 'Automatisch';
 
   @override
   String get autoCheckUpdate => 'Automatisch nach Updates suchen';
 
   @override
-  String get autoRmDupChat => 'Doppelte Chats automatisch entfernen';
-
-  @override
-  String get autoScrollBottom => 'Automatisch nach unten scrollen';
-
-  @override
   String get backupTip =>
       'Bitte stellen Sie sicher, dass Ihre Sicherungsdatei privat und sicher ist!';
-
-  @override
-  String get balance => 'Guthaben';
-
-  @override
-  String get calcTokenLen => 'Token-Länge berechnen';
-
-  @override
-  String get changeModelTip =>
-      'Verschiedene Schlüssel können möglicherweise auf unterschiedliche Modelllisten zugreifen. Wenn Sie den Mechanismus nicht verstehen und Fehler auftreten, empfiehlt es sich, das Modell neu einzustellen.';
 
   @override
   String get chat => 'Chat';
 
   @override
-  String get chatHistoryLength => 'Länge des Chat-Verlaufs';
-
-  @override
-  String get chatHistoryTip => 'Wird als Chat-Kontext verwendet';
-
-  @override
-  String get clickSwitch => 'Zum Umschalten klicken';
-
-  @override
   String get clickToCheck => 'Zum Überprüfen klicken';
 
   @override
-  String get clipboard => 'Zwischenablage';
-
-  @override
   String get codeBlock => 'Codeblock';
-
-  @override
-  String get colorSeedTip => 'Dies ist ein Farbsamen, keine Farbe';
-
-  @override
-  String get compress => 'Komprimieren';
-
-  @override
-  String get compressImgTip => 'Für Chat und Teilen';
-
-  @override
-  String get contributor => 'Mitwirkender';
 
   @override
   String get copied => 'Kopiert';
@@ -87,27 +35,12 @@ class AppLocalizationsDe extends AppLocalizations {
   String get current => 'Aktuell';
 
   @override
-  String get custom => 'Benutzerdefiniert';
-
-  @override
-  String get day => 'Tag';
-
-  @override
-  String get defaulT => 'Standard';
-
-  @override
   String delFmt(Object id, Object type) {
     return '$type ($id) löschen?';
   }
 
   @override
-  String get delete => 'Löschen';
-
-  @override
   String get deleteConfirm => 'Vor dem Löschen bestätigen';
-
-  @override
-  String get editor => 'Editor';
 
   @override
   String emptyFields(Object fields) {
@@ -115,88 +48,19 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
-  String get emptyTrash => 'Papierkorb leeren';
-
-  @override
   String get emptyTrashTip =>
       '==0, beim nächsten Start löschen. <0 nicht automatisch löschen.';
-
-  @override
-  String fileNotFound(Object file) {
-    return 'Datei ($file) nicht gefunden';
-  }
-
-  @override
-  String fileTooLarge(Object size) {
-    return 'Datei zu groß: $size';
-  }
-
-  @override
-  String get followChatModel => 'Chat-Modell folgen';
-
-  @override
-  String get fontSize => 'Schriftgröße';
-
-  @override
-  String get fontSizeSettingTip => 'Gilt nur für Codeblöcke';
-
-  @override
-  String get freeCopy => 'Freies Kopieren';
 
   @override
   String get genChatTitle => 'Chat-Titel generieren';
 
   @override
-  String get genTitle => 'Titel generieren';
-
-  @override
-  String get headTailMode => 'Kopf-Schwanz-Modus';
-
-  @override
-  String get headTailModeTip =>
-      'Sendet nur `Prompt + erste Benutzernachricht + aktuelle Eingabe` als Kontext.\n\nDies ist besonders nützlich für die Übersetzung von Gesprächen (spart Tokens).';
-
-  @override
-  String get help => 'Hilfe';
-
-  @override
-  String get history => 'Verlauf';
-
-  @override
-  String historyToolHelp(Object keywords) {
-    return 'Chats mit den Schlüsselwörtern $keywords als Kontext laden?';
-  }
-
-  @override
-  String get historyToolTip => 'Lade historische Chats als Kontext';
-
-  @override
-  String get hour => 'Stunde';
-
-  @override
-  String get httpToolTip => 'HTTP-Anfrage senden, z.B.: Inhalte suchen';
-
-  @override
-  String get ignoreContextConstraint => 'Kontextbeschränkung ignorieren';
-
-  @override
-  String get ignoreTip => 'Hinweis ignorieren';
-
-  @override
   String get image => 'Bild';
-
-  @override
-  String initChatHelp(Object issue, Object unilink) {
-    return '### 📖 Tipps\n- Übermäßiges Scrollen (Overscroll) im Chat-Bildschirm ermöglicht schnelles Wechseln zwischen Chat-Verläufen\n- Langes Drücken auf Chat-Text ermöglicht freies Auswählen und Kopieren der Markdown-Quelle\n- Die Verwendung des URL-Schemas finden Sie [hier]($unilink)\n\n### 🔍 Hilfe\n- Wenn GPT Box Bugs hat, verwenden Sie bitte [Github Issue]($issue)\n- Telegram `@lpktg`';
-  }
 
   @override
   String invalidLinkFmt(Object uri) {
     return 'Unbekannter Link: $uri';
   }
-
-  @override
-  String get joinBeta => 'An Beta-Tests teilnehmen';
 
   @override
   String get languageName => 'Deutsch';
@@ -208,85 +72,16 @@ class AppLocalizationsDe extends AppLocalizations {
   String get licenseMenuItem => 'Open-Source-Lizenzen';
 
   @override
-  String get list => 'Liste';
-
-  @override
   String get manual => 'Manuell';
-
-  @override
-  String get memory => 'Gedächtnis';
-
-  @override
-  String memoryAdded(Object str) {
-    return 'Gedächtnis hinzugefügt: $str';
-  }
-
-  @override
-  String memoryTip(Object txt) {
-    return '[$txt] merken?';
-  }
-
-  @override
-  String get message => 'Nachricht';
-
-  @override
-  String get migrationV1UrlTip =>
-      'Soll \"/v1\" automatisch am Ende der Konfiguration hinzugefügt werden?';
-
-  @override
-  String get minute => 'Minute';
-
-  @override
-  String get model => 'Modell';
-
-  @override
-  String get modelRegExpTip =>
-      'Wenn der Modellname übereinstimmt, werden Tools verwendet';
 
   @override
   String get more => 'Mehr';
 
   @override
-  String get multiModel => 'Multimodal';
-
-  @override
   String get myOtherApps => 'Meine anderen Apps';
 
   @override
-  String get needOpenAIKey => 'Bitte geben Sie zuerst den OpenAI-Schlüssel ein';
-
-  @override
-  String get needRestart => 'Neustart erforderlich, um Änderungen anzuwenden';
-
-  @override
   String get newChat => 'Neuer Chat';
-
-  @override
-  String get noDuplication => 'Keine Duplikate';
-
-  @override
-  String notSupported(Object val) {
-    return '$val wird nicht unterstützt';
-  }
-
-  @override
-  String get onMsgCome => 'Wenn neue Nachrichten vorhanden sind';
-
-  @override
-  String get onSwitchChat => 'Beim Wechseln der Konversation';
-
-  @override
-  String get onlyRestoreHistory =>
-      'Nur Chat-Verlauf wiederherstellen (API-URL und geheimer Schlüssel werden nicht wiederhergestellt)';
-
-  @override
-  String get onlySyncOnLaunch => 'Nur beim Start synchronisieren';
-
-  @override
-  String get other => 'Andere';
-
-  @override
-  String get participant => 'Teilnehmer';
 
   @override
   String get passwd => 'Passwort';
@@ -298,74 +93,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get privacyTip => 'Diese App sammelt keine Informationen.';
 
   @override
-  String get profile => 'Profil';
-
-  @override
-  String get promptsSettingsItem => 'Prompts';
-
-  @override
-  String get quickShareTip =>
-      'Öffnen Sie diesen Link auf einem anderen Gerät, um die aktuelle Konfiguration schnell zu importieren.';
-
-  @override
-  String get raw => 'Roh';
-
-  @override
-  String get refresh => 'Aktualisieren';
-
-  @override
-  String get regExp => 'Regulärer Ausdruck';
-
-  @override
-  String get remember30s => '30 Sekunden merken';
-
-  @override
   String get rename => 'Umbenennen';
-
-  @override
-  String get replay => 'Wiederholen';
-
-  @override
-  String get replayTip =>
-      'Die wiederholten Nachrichten und alle folgenden Nachrichten werden gelöscht.';
-
-  @override
-  String get res => 'Ressource';
-
-  @override
-  String restoreOpenaiTip(Object url) {
-    return 'Die Dokumentation finden Sie [hier]($url)';
-  }
-
-  @override
-  String get rmDuplication => 'Duplikate entfernen';
-
-  @override
-  String rmDuplicationFmt(Object count) {
-    return 'Sind Sie sicher, dass Sie [$count] doppelte Elemente löschen möchten?';
-  }
-
-  @override
-  String get route => 'Route';
-
-  @override
-  String get save => 'Speichern';
-
-  @override
-  String get saveErrChat => 'Fehlerhaften Chat speichern';
-
-  @override
-  String get saveErrChatTip =>
-      'Speichern Sie nach dem Empfangen/Senden jeder Nachricht, auch wenn Fehler auftreten';
-
-  @override
-  String get scrollSwitchChat => 'Scrollen zum Wechseln des Chats';
-
-  @override
-  String get search => 'Suche';
-
-  @override
-  String get secretKey => 'Geheimer Schlüssel';
 
   @override
   String get share => 'Teilen';
@@ -374,14 +102,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get shareFrom => 'Geteilt von';
 
   @override
-  String get skipSameTitle =>
-      'Chats mit demselben Titel wie lokale Chats überspringen';
-
-  @override
   String get softWrap => 'Zeilenumbruch';
-
-  @override
-  String get stt => 'Sprache zu Text';
 
   @override
   String sureRestoreFmt(Object time) {
@@ -389,15 +110,9 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
-  String get switcher => 'Schalter';
-
-  @override
   String syncConflict(Object a, Object b) {
     return 'Konflikt: $a und $b können nicht gleichzeitig aktiviert werden';
   }
-
-  @override
-  String get system => 'System';
 
   @override
   String get text => 'Text';
@@ -409,38 +124,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get themeMode => 'Theme-Modus';
 
   @override
-  String get thirdParty => 'Drittanbieter';
-
-  @override
-  String get tool => 'Werkzeug';
-
-  @override
-  String toolConfirmFmt(Object tool) {
-    return 'Stimmen Sie der Verwendung des Werkzeugs $tool zu?';
-  }
-
-  @override
-  String get toolFinishTip => 'Werkzeugaufruf abgeschlossen';
-
-  @override
-  String toolHttpReqHelp(Object host) {
-    return 'Es werden Daten aus dem Netzwerk abgerufen, diesmal wird $host kontaktiert';
-  }
-
-  @override
-  String get toolHttpReqName => 'HTTP-Anfrage';
-
-  @override
-  String get tts => 'Text zu Sprache';
-
-  @override
-  String get unsupported => 'Nicht unterstützt';
-
-  @override
   String get untitled => 'Unbenannt';
-
-  @override
-  String get update => 'Aktualisieren';
 
   @override
   String get usage => 'Verwendung';
@@ -449,10 +133,228 @@ class AppLocalizationsDe extends AppLocalizations {
   String get user => 'Benutzer';
 
   @override
-  String weeksAgo(Object weeks) {
-    return 'Vor $weeks Wochen';
+  String get trash => 'Papierkorb';
+
+  @override
+  String get startChatTip => 'Wähle unten ein Modell und schreib etwas.';
+
+  @override
+  String get noProviderKey =>
+      'Noch kein Anbieter hat einen Schlüssel. Füge einen hinzu, um zu chatten.';
+
+  @override
+  String get providers => 'Anbieter';
+
+  @override
+  String providersCountFmt(int n) {
+    return '$n Anbieter';
   }
 
   @override
-  String get wrap => 'Umbruch';
+  String get today => 'Heute';
+
+  @override
+  String get earlier => 'Früher';
+
+  @override
+  String get now => 'jetzt';
+
+  @override
+  String minutesFmt(int n) {
+    return '$n Min.';
+  }
+
+  @override
+  String hoursFmt(int n) {
+    return '$n Std.';
+  }
+
+  @override
+  String messagesCountFmt(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n Nachrichten',
+      one: '1 Nachricht',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get version => 'Version';
+
+  @override
+  String get toolsAndMcp => 'Werkzeuge & MCP';
+
+  @override
+  String get backToChats => 'Zurück zu den Chats';
+
+  @override
+  String get genChatTitleTip => 'Benennt einen Chat nach der ersten Antwort';
+
+  @override
+  String get scrollOnNewMsg => 'Bei neuer Nachricht nach unten scrollen';
+
+  @override
+  String get scrollAfterSwitch => 'Nach Chatwechsel nach unten scrollen';
+
+  @override
+  String chatsCountFmt(int n) {
+    return '$n Chats';
+  }
+
+  @override
+  String get emptyTrashAfter => 'Papierkorb leeren nach';
+
+  @override
+  String get trashTip => 'Gelöschte Chats landen zuerst hier';
+
+  @override
+  String daysFmt(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n Tage',
+      one: '1 Tag',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get sync => 'Synchronisierung';
+
+  @override
+  String get syncNow => 'Jetzt synchronisieren';
+
+  @override
+  String get syncing => 'Wird synchronisiert…';
+
+  @override
+  String get neverSynced => 'Noch nicht synchronisiert';
+
+  @override
+  String lastSyncFmt(String time) {
+    return 'Zuletzt synchronisiert: $time';
+  }
+
+  @override
+  String get syncOffTip =>
+      'Schalte unten LK Cloud, iCloud oder WebDAV ein, um automatisch zu synchronisieren.';
+
+  @override
+  String get backupPassword => 'Backup-Passwort';
+
+  @override
+  String get backupEncrypted => 'Backups werden damit verschlüsselt';
+
+  @override
+  String get backupNotEncrypted =>
+      'Nicht gesetzt: Datei-Backups sind unverschlüsselt, und die Synchronisierung braucht eines';
+
+  @override
+  String get backupEncryptedTip => 'Dieses Backup ist verschlüsselt';
+
+  @override
+  String get backupPasswordRequired =>
+      'Lege zuerst ein Backup-Passwort fest: synchronisierte Backups sind immer verschlüsselt';
+
+  @override
+  String get passwordWrong => 'Falsches Passwort oder beschädigtes Backup';
+
+  @override
+  String get backupTooNew =>
+      'Dieses Backup stammt aus einer neueren App-Version. Aktualisiere, um es wiederherzustellen.';
+
+  @override
+  String get syncAppSettings => 'App-Einstellungen synchronisieren';
+
+  @override
+  String get syncAppSettingsTip =>
+      'Fenstergröße und Titelleiste bleiben pro Gerät';
+
+  @override
+  String get webdavManualTip =>
+      'Eine datierte Kopie neben der synchronisierten';
+
+  @override
+  String get exportFile => 'In eine Datei exportieren';
+
+  @override
+  String get importFile => 'Aus einer Datei wiederherstellen';
+
+  @override
+  String get copyBackup => 'In die Zwischenablage kopieren';
+
+  @override
+  String get pasteBackup => 'Aus der Zwischenablage wiederherstellen';
+
+  @override
+  String get pullNewChat => 'Nach unten ziehen für einen neuen Chat';
+
+  @override
+  String get releaseNewChat => 'Loslassen für einen neuen Chat';
+
+  @override
+  String get pullOlderChat =>
+      'Nach oben ziehen und halten für den vorherigen Chat';
+
+  @override
+  String holdOlderChatFmt(String title) {
+    return 'Weiter halten: $title';
+  }
+
+  @override
+  String get shellTool => 'Shell';
+
+  @override
+  String get shellToolTip =>
+      'Führt Befehle auf diesem Gerät aus, jeden nach deiner Zustimmung';
+
+  @override
+  String get linuxEnv => 'Linux-Umgebung';
+
+  @override
+  String get linuxEnvTip =>
+      'Hier läuft die Shell auf diesem Telefon. Sie sieht die eigenen Dateien des Telefons nicht.';
+
+  @override
+  String linuxInstallTip(String distro, String version, int size) {
+    return '$distro $version herunterladen, $size MB?';
+  }
+
+  @override
+  String linuxRemoveTip(String name) {
+    return '$name und alles darin Installierte löschen?';
+  }
+
+  @override
+  String get linuxInUse => 'Darin läuft ein Befehl';
+
+  @override
+  String get linuxNone => 'Nicht installiert';
+
+  @override
+  String get syncChats => 'Chats synchronisieren';
+
+  @override
+  String get syncAi => 'Modelle, Werkzeuge und Gedächtnis synchronisieren';
+
+  @override
+  String get syncSecrets => 'API-Schlüssel und MCP-Geheimnisse synchronisieren';
+
+  @override
+  String get syncPasswordMismatch =>
+      'Das Backup-Passwort öffnet den Schlüssel dieser Synchronisierung nicht: ein anderes Gerät hat es geändert';
+
+  @override
+  String get syncTooNew =>
+      'Von einer neueren Version synchronisiert: aktualisieren, um weiter zu synchronisieren';
+
+  @override
+  String syncRefused(String reason) {
+    return 'LK Cloud hat die Synchronisierung abgelehnt ($reason)';
+  }
+
+  @override
+  String get rotateSyncKey => 'Sync-Schlüssel ersetzen';
 }

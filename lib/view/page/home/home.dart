@@ -1,211 +1,245 @@
 import 'dart:async';
-import 'dart:math' as math;
 
 import 'package:app_links/app_links.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:fl_lib/fl_lib.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter/services.dart';
-import 'package:gpt_box/core/util/sync.dart';
-import 'package:gpt_box/core/util/url.dart';
-//import 'package:flutter_tiktoken/flutter_tiktoken.dart';
-import 'package:gpt_box/data/model/chat/history/share.dart';
-import 'package:gpt_box/core/util/chat_title.dart';
-import 'package:gpt_box/core/util/tool_func/tool.dart';
-import 'package:gpt_box/data/model/chat/config.dart';
-import 'package:gpt_box/data/model/chat/history/history.dart';
-import 'package:gpt_box/data/model/chat/history/view.dart';
-import 'package:gpt_box/data/model/chat/type.dart';
-import 'package:gpt_box/data/res/build_data.dart';
-import 'package:gpt_box/data/res/l10n.dart';
-import 'package:gpt_box/data/res/migrations.dart';
-import 'package:gpt_box/data/res/openai.dart';
-import 'package:gpt_box/data/res/url.dart';
-import 'package:gpt_box/data/store/all.dart';
-import 'package:gpt_box/view/page/settings/setting.dart';
-import 'package:icons_plus/icons_plus.dart';
-// import 'package:image_picker/image_picker.dart';
-import 'package:openai_dart/openai_dart.dart';
-import 'package:screenshot/screenshot.dart';
+import 'package:llmbox/core/util/update.dart';
+import 'package:llmbox/core/util/url.dart';
+import 'package:llmbox/data/res/build_data.dart';
+import 'package:llmbox/data/res/l10n.dart';
+import 'package:llmbox/data/store/all.dart';
+import 'package:llmbox/view/page/home/chat_list.dart';
+import 'package:llmbox/view/page/home/chat_view.dart';
+import 'package:llmbox/view/page/home/share.dart';
+import 'package:llmbox/view/page/settings/setting.dart';
+import 'package:fl_pi_llm_ui/fl_pi_llm_ui.dart';
 
-part 'chat.dart';
-part 'history.dart';
-part 'var.dart';
-part 'ctrl.dart';
-part 'enum.dart';
-part 'search.dart';
-part 'appbar.dart';
-part 'bottom/bottom.dart';
-part 'bottom/settings.dart';
-part 'bottom/picked_files.dart';
+part 'desktop.dart';
 part 'url_scheme.dart';
-part 'req.dart';
-part 'md_copy.dart';
-part 'trash.dart';
 
+/// One sidebar and the content beside it on a wide window: the chats, or in
+/// the settings their categories. A phone has the chat, with the chats in a
+/// drawer and the settings pushed.
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
+  static _HomePageState? _state;
+
+  /// The desktop shortcuts, for a key pressed on any page: the settings are
+  /// routes of their own, above the home page. Put above the navigator.
+  static Widget shortcuts({required Widget child}) => Focus(
+    canRequestFocus: false,
+    skipTraversal: true,
+    onKeyEvent: (_, e) {
+      final s = _state;
+      if (s == null || !s.mounted || e is! KeyDownEvent) return KeyEventResult.ignored;
+      for (final MapEntry(key: a, value: run) in _desktopShortcuts(s).entries) {
+        if (a.accepts(e, HardwareKeyboard.instance)) {
+          run();
+          return KeyEventResult.handled;
+        }
+      }
+      return KeyEventResult.ignored;
+    },
+    child: child,
+  );
+
   @override
   State<HomePage> createState() => _HomePageState();
-
-  static void afterRestore() {
-    _allHistories = Stores.history.fetchAll();
-    _historyRN.notify();
-    _chatRN.notify();
-    _switchChat();
-    Cfg.setTo();
-  }
 }
 
-class _HomePageState extends State<HomePage>
-    with AfterLayoutMixin<HomePage>, TickerProviderStateMixin {
-  Timer? _refreshTimeTimer;
-  final _appLink = AppLinks();
+class _HomePageState extends State<HomePage> with AfterLayoutMixin<HomePage> {
+  final _scaffold = GlobalKey<ScaffoldState>();
+  final _appLinks = AppLinks();
+  StreamSubscription<Uri>? _linkSub;
+
+  @override
+  void initState() {
+    super.initState();
+    HomePage._state = this;
+  }
 
   @override
   void dispose() {
-    // Do NOT dispose these, it's global and will be reused
-    // _inputCtrl.dispose();
-    // _chatScrollCtrl.dispose();
-    // _historyScrollCtrl.dispose();
-
-    _refreshTimeTimer?.cancel();
-    // The context used inside the keyboard listener will be invalid after
-    // [_HomePageState.dispose], so this must be disposed here
-    _keyboardSendListener?.dispose();
+    if (HomePage._state == this) HomePage._state = null;
+    _linkSub?.cancel();
     super.dispose();
   }
 
   @override
-  void didChangeDependencies() {
-    RNodes.dark.value = context.isDark;
-    _isDesktop.value = !context.isMobile;
-    super.didChangeDependencies();
-    _homeBottomRN.notify();
+  FutureOr<void> afterFirstLayout(BuildContext context) async {
+    Chats.current.value ??= LlmStores.chat.all().firstOrNull?.id;
+    unawaited(Chats.purgeTrash());
+    _initLinks();
+    if (Stores.setting.autoCheckUpdate.get()) {
+      unawaited(checkAppUpdate(context));
+    }
+    if (Llm.configured.value.isEmpty && context.mounted) {
+      // Nothing can be sent without a key; say so up front.
+      Toast.show(
+        l10n.noProviderKey,
+        action: ToastAction(
+          label: l10n.providers,
+          onTap: () => _openSettings(SettingsTab.providers),
+        ),
+      );
+    }
+  }
+
+  void _initLinks() {
+    DeepLinks.register(_handleLink);
+    _linkSub = _appLinks.uriLinkStream.listen(
+      (uri) => DeepLinks.process(uri, mounted ? context : null),
+      onError: (Object e) => Loggers.app.warning(l10n.invalidLinkFmt(e)),
+    );
+  }
+
+  void _newChat() {
+    Chats.current.value = null;
+    SettingsNav.close();
+    _scaffold.currentState?.closeDrawer();
+  }
+
+  void _openSettings([SettingsTab tab = SettingsTab.app]) {
+    _scaffold.currentState?.closeDrawer();
+    if (SettingsNav.inline) {
+      SettingsNav.open(context, tab);
+    } else if (tab == SettingsTab.app) {
+      SettingsPage.route.go(context);
+    } else {
+      SettingsTabPage.route.go(context, args: tab);
+    }
+  }
+
+  void _search() {
+    SettingsNav.close();
+    if (!SettingsNav.inline) _scaffold.currentState?.openDrawer();
+    ChatSidebar.requestSearch();
+  }
+
+  void _step(int delta) {
+    final chats = LlmStores.chat.all();
+    if (chats.isEmpty) return;
+    final i = chats.indexWhere((c) => c.id == Chats.current.value);
+    final next = (i < 0 ? 0 : i + delta).clamp(0, chats.length - 1);
+    Chats.current.value = chats[next].id;
   }
 
   @override
   Widget build(BuildContext context) {
+    final body = LayoutBuilder(
+      builder: (context, cons) {
+        final wide = cons.maxWidth >= AdaptivePanes.kSplitWidth;
+        SettingsNav.inline = wide;
+        return wide ? _wide() : _narrow();
+      },
+    );
+    final scaffold = Scaffold(
+      key: _scaffold,
+      drawer: Drawer(
+        child: SafeArea(
+          child: ChatSidebar(
+            onNewChat: _newChat,
+            onOpenSettings: _openSettings,
+            onPicked: () => _scaffold.currentState?.closeDrawer(),
+          ),
+        ),
+      ),
+      drawerEnableOpenDragGesture: !isDesktop,
+      body: body,
+    );
+    final shortcuts = Focus(autofocus: true, child: scaffold);
     return ExitConfirm(
       onPop: (_) => ExitConfirm.exitApp(),
-      child: const Scaffold(
-        appBar: _CustomAppBar(),
-        body: _Body(),
-        bottomNavigationBar: _HomeBottom(isHome: true),
+      // The target platform, not the host: the menu bar is the platform's.
+      child: defaultTargetPlatform == TargetPlatform.macOS
+          ? PlatformMenuBar(menus: _macosMenus(this), child: shortcuts)
+          : shortcuts,
+    );
+  }
+
+  Widget _wide() {
+    final sets = Stores.setting;
+    // The seam drags; the sidebar does not fold, so there is no grip on it.
+    return sets.paneListWidth.listenable().listenVal(
+      (width) => AdaptivePanes.surface(
+        listWidth: width,
+        onListWidthChanged: sets.paneListWidth.set,
+        listBuilder: (_, _) => ChatSidebar(onNewChat: _newChat, onOpenSettings: _openSettings),
+        surfaceBuilder: (_, _) => const ChatPane(),
       ),
     );
   }
 
-  @override
-  FutureOr<void> afterFirstLayout(BuildContext context) {
-    _allHistories = Stores.history.fetchAll();
-    _refreshTimeTimer = Timer.periodic(
-      const Duration(seconds: 10),
-      (_) {
-        if (mounted) _timeRN.notify();
-      },
-    );
-    _initUrlScheme();
-    // AudioCard.listenAudioPlayer();
-
-    /// Keep this here.
-    /// - If there is not chat history, [_switchChat] will create one
-    /// - If the init help haven't shown, [_switchChat] will show it
-    /// - Init help uses [l10n] to gen msg, so [l10n] must be ready
-    /// - [l10n] is ready after first layout
-    _switchChat();
-    _listenKeyboard();
-    _historyRN.notify();
-    //_removeDuplicateHistory(context);
-
-    if (Stores.setting.autoCheckUpdate.get()) {
-      AppUpdateIface.doUpdate(
-        url: Urls.appUpdateCfg,
-        context: context,
-        build: BuildData.build,
-      );
-    }
-
-    _migrate();
-  }
-
-  void _migrate() async {
-    final lastVer = PrefProps.lastVer.get();
-    const now = BuildData.build;
-
-    await MigrationFns.appendV1ToUrl(lastVer, now, context: context);
-
-    PrefProps.lastVer.set(now);
-  }
-
-  void _listenKeyboard() {
-    _keyboardSendListener = KeyboardCtrlListener(
-      key: PhysicalKeyboardKey.enter,
-      callback: () {
-        // If the current page is not chat, do nothing
-        if (context.stillOnPage != true) return false;
-
-        if (_inputCtrl.text.isEmpty) return false;
-        _onCreateRequest(context, _curChatId.value);
-        return true;
-      },
-    );
-  }
-
-  Future<void> _initUrlScheme() async {
-    DeepLinks.register(_AppLink.handle);
-
-    if (isWeb) {
-      final uri = await _appLink.getInitialLink();
-      if (uri == null) return;
-      DeepLinks.process(uri, context);
-    } else {
-      _appLink.uriLinkStream.listen((uri) {
-        final ctx = mounted ? context : null;
-        DeepLinks.process(uri, ctx);
-      }, onError: (err) {
-        final msg = l10n.invalidLinkFmt(err);
-        Loggers.app.warning(msg);
-        context.showRoundDialog(title: l10n.attention, child: Text(msg));
-      });
-    }
-  }
-}
-
-final class _Body extends StatelessWidget {
-  const _Body();
-
-  @override
-  Widget build(BuildContext context) {
-    const history = _HistoryPage();
-    const chat = _ChatPage();
-
-    return _isDesktop.listenVal(
-      (isWide) {
-        if (isWide) {
-          return LayoutBuilder(
-            builder: (context, cons) {
-              final w = math.max(200.0, math.min(400.0, cons.maxWidth * 0.3));
-              return Row(
-                children: [
-                  SizedBox(width: w, height: cons.maxHeight, child: history),
-                  const Expanded(child: chat),
+  /// A chat's share and menu, the settings in it; the settings alone
+  /// without a chat.
+  List<Widget> _narrowActions() {
+    Widget settingsBtn() =>
+        Btn.icon(icon: const Icon(Icons.settings_outlined, size: 20), text: libL10n.setting, onTap: _openSettings);
+    return [
+      ListenableBuilder(
+        listenable: Listenable.merge([Chats.current, LlmStores.chat.changes]),
+        builder: (context, _) {
+          final id = Chats.current.value;
+          final meta = id == null ? null : LlmStores.chat.fetch(id);
+          if (id == null || meta == null) return settingsBtn();
+          return Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Btn.icon(
+                icon: const Icon(Icons.ios_share, size: 20),
+                text: l10n.share,
+                onTap: () => shareChat(context, id),
+              ),
+              MenuBtn(
+                actions: [
+                  ...chatActions(context, meta),
+                  ContextMenuAction(text: libL10n.setting, icon: Icons.settings_outlined, onTap: _openSettings),
                 ],
-              );
-            },
+                builder: (toggle) =>
+                    Btn.icon(icon: const Icon(Icons.more_vert, size: 20), text: l10n.more, onTap: toggle),
+              ),
+            ],
           );
-        }
+        },
+      ),
+    ];
+  }
 
-        return PageView(
-          controller: _pageCtrl,
-          onPageChanged: (value) {
-            _curPage.value = HomePageEnum.fromIdx(value);
-          },
-          children: const [history, chat],
-        );
-      },
+  Widget _narrow() {
+    return SafeArea(
+      bottom: false,
+      child: Column(
+        children: [
+          SizedBox(
+            height: CustomAppBar.appBarHeight,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 7),
+              // The title in the middle of the bar, whatever is either side.
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  const Padding(padding: EdgeInsets.symmetric(horizontal: 90), child: ChatTitle(center: true)),
+                  Row(
+                    children: [
+                      Btn.icon(
+                        icon: const Icon(Icons.menu, size: 22),
+                        text: l10n.chat,
+                        onTap: () => _scaffold.currentState?.openDrawer(),
+                      ),
+                      const Spacer(),
+                      ..._narrowActions(),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+          const Expanded(child: ChatPane(compact: true)),
+        ],
+      ),
     );
   }
 }

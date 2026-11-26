@@ -25,7 +25,7 @@ final class _IntroPage extends StatelessWidget {
             onDone: (ctx) {
               Stores.setting.introVer.set(BuildData.build);
               Navigator.of(ctx).pushReplacement(
-                MaterialPageRoute(builder: (_) => const HomePage()),
+                MaterialPageRoute(builder: (_) => const VirtualWindowFrame(child: HomePage())),
               );
             },
           ),
@@ -39,14 +39,14 @@ final class _IntroPage extends StatelessWidget {
       padding: _introListPad,
       children: [
         SizedBox(height: padTop),
-        _buildTitle(icon: Iconsax.magic_star_bold, big: true),
+        _buildTitle(icon: Icons.auto_awesome, big: true),
         SizedBox(height: padTop),
         _buildTitle(text: 'App'),
         ListTile(
-          leading: const Icon(IonIcons.language),
+          leading: const Icon(Icons.translate),
           title: Text(libL10n.language),
           onTap: () async {
-            final selected = await ctx.showPickSingleDialog(
+            final selected = await ctx.showPickSingleSheet(
               title: libL10n.language,
               items: AppLocalizations.supportedLocales,
               display: (p0) => p0.nativeName,
@@ -69,20 +69,9 @@ final class _IntroPage extends StatelessWidget {
         ).cardx,
         _buildTitle(text: l10n.chat),
         ListTile(
-          leading: const Icon(Iconsax.subtitle_bold),
+          leading: const Icon(Icons.subtitles),
           title: Text(l10n.genChatTitle),
           trailing: StoreSwitch(prop: _setting.genTitle),
-        ).cardx,
-        ListTile(
-          leading: const Icon(LineAwesome.compress_solid),
-          title: Text(l10n.compress),
-          subtitle: Text(l10n.compressImgTip, style: UIs.textGrey),
-          trailing: StoreSwitch(prop: _setting.compressImg),
-        ).cardx,
-        ListTile(
-          leading: const Icon(Icons.swap_vert),
-          title: Text(l10n.scrollSwitchChat),
-          trailing: StoreSwitch(prop: _setting.scrollSwitchChat),
         ).cardx,
       ],
     );

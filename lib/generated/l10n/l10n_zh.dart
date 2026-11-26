@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'l10n.dart';
 
 // ignore_for_file: type=lint
@@ -9,74 +10,22 @@ class AppLocalizationsZh extends AppLocalizations {
   AppLocalizationsZh([String locale = 'zh']) : super(locale);
 
   @override
-  String get apiUrlV1Tip =>
-      '类似 `https://api.openai.com/v1`（需要最后的 `/v1`）。继续使用该 URL 吗？';
-
-  @override
-  String get assistant => '助手';
-
-  @override
-  String get attention => '注意';
-
-  @override
-  String get audio => '音频';
-
-  @override
   String get auto => '自动';
 
   @override
   String get autoCheckUpdate => '自动检查更新';
 
   @override
-  String get autoRmDupChat => '自动删除重复聊天';
-
-  @override
-  String get autoScrollBottom => '自动滚动到底部';
-
-  @override
   String get backupTip => '请保证备份文件私密且安全！';
-
-  @override
-  String get balance => '余额';
-
-  @override
-  String get calcTokenLen => '计算 Tokens 长度';
-
-  @override
-  String get changeModelTip => '不同密钥可能能访问的模型列表不同，如果不了解机制并且出现错误，建议重新设置模型。';
 
   @override
   String get chat => '聊天';
 
   @override
-  String get chatHistoryLength => '聊天历史长度';
-
-  @override
-  String get chatHistoryTip => '用作聊天上下文';
-
-  @override
-  String get clickSwitch => '点击切换';
-
-  @override
   String get clickToCheck => '点击检查';
 
   @override
-  String get clipboard => '剪切板';
-
-  @override
   String get codeBlock => '代码区块';
-
-  @override
-  String get colorSeedTip => '这是颜色种子，不是颜色';
-
-  @override
-  String get compress => '压缩';
-
-  @override
-  String get compressImgTip => '用于聊天和分享';
-
-  @override
-  String get contributor => '贡献者';
 
   @override
   String get copied => '已复制';
@@ -85,27 +34,12 @@ class AppLocalizationsZh extends AppLocalizations {
   String get current => '当前';
 
   @override
-  String get custom => '自定义';
-
-  @override
-  String get day => '天';
-
-  @override
-  String get defaulT => '默认';
-
-  @override
   String delFmt(Object id, Object type) {
     return '删除 $type（$id）？';
   }
 
   @override
-  String get delete => '删除';
-
-  @override
   String get deleteConfirm => '删除前确认';
-
-  @override
-  String get editor => '编辑器';
 
   @override
   String emptyFields(Object fields) {
@@ -113,87 +47,18 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
-  String get emptyTrash => '清理回收站';
-
-  @override
   String get emptyTrashTip => '==0，下次启动时删除。<0 不自动删除。';
-
-  @override
-  String fileNotFound(Object file) {
-    return '文件（$file）未能找到';
-  }
-
-  @override
-  String fileTooLarge(Object size) {
-    return '文件过大：$size';
-  }
-
-  @override
-  String get followChatModel => '跟随聊天模型';
-
-  @override
-  String get fontSize => '字体大小';
-
-  @override
-  String get fontSizeSettingTip => '仅对代码块生效';
-
-  @override
-  String get freeCopy => '自由复制';
 
   @override
   String get genChatTitle => '生成聊天标题';
 
   @override
-  String get genTitle => '生成标题';
-
-  @override
-  String get headTailMode => '头尾模式';
-
-  @override
-  String get headTailModeTip =>
-      '仅发送 `提示词+第一条用户信息+当前输入` 作为上下文。\n\n这在用于翻译对话时特别有用（可以节省 tokens）。';
-
-  @override
-  String get help => '帮助';
-
-  @override
-  String get history => '历史';
-
-  @override
-  String historyToolHelp(Object keywords) {
-    return '加载包含关键字 $keywords 的聊天作为上下文？';
-  }
-
-  @override
-  String get historyToolTip => '加载历史聊天作为上下文';
-
-  @override
-  String get hour => '小时';
-
-  @override
-  String get httpToolTip => '发起 Http 请求，例如：搜索内容';
-
-  @override
-  String get ignoreContextConstraint => '忽略上下文限制';
-
-  @override
-  String get ignoreTip => '忽略提示';
-
-  @override
   String get image => '图片';
-
-  @override
-  String initChatHelp(Object issue, Object unilink) {
-    return '### 📖 提示\n- 在聊天界面过度滑动（overscroll）可以快捷切换聊天历史记录\n- 长按聊天文字自由选中复制Markdown源\n- URL Scheme 用法可以在 [这里]($unilink)\n\n### 🔍 帮助\n- 如果 GPT Box 有 bug，请使用 [Github Issue]($issue)\n- Telegram `@lpktg`';
-  }
 
   @override
   String invalidLinkFmt(Object uri) {
     return '未知链接：$uri';
   }
-
-  @override
-  String get joinBeta => '参与Beta版测试';
 
   @override
   String get languageName => '简体中文';
@@ -205,82 +70,16 @@ class AppLocalizationsZh extends AppLocalizations {
   String get licenseMenuItem => '开放源代码许可';
 
   @override
-  String get list => '列表';
-
-  @override
   String get manual => '手动';
-
-  @override
-  String get memory => '记忆';
-
-  @override
-  String memoryAdded(Object str) {
-    return '记忆已添加: $str';
-  }
-
-  @override
-  String memoryTip(Object txt) {
-    return '记住 [$txt]?';
-  }
-
-  @override
-  String get message => '消息';
-
-  @override
-  String get migrationV1UrlTip => '是否自动在配置的末尾添加\"/v1\"？';
-
-  @override
-  String get minute => '分钟';
-
-  @override
-  String get model => '模型';
-
-  @override
-  String get modelRegExpTip => '如果模型名匹配，则使用 Tools';
 
   @override
   String get more => '更多';
 
   @override
-  String get multiModel => '多模态';
-
-  @override
   String get myOtherApps => '我的其它 App';
 
   @override
-  String get needOpenAIKey => '请先输入 OpenAI 密钥';
-
-  @override
-  String get needRestart => '需要重启来应用';
-
-  @override
   String get newChat => '新建聊天';
-
-  @override
-  String get noDuplication => '没有重复项目';
-
-  @override
-  String notSupported(Object val) {
-    return '$val 不支持';
-  }
-
-  @override
-  String get onMsgCome => '当有新消息';
-
-  @override
-  String get onSwitchChat => '当切换对话';
-
-  @override
-  String get onlyRestoreHistory => '仅恢复历史聊天（不恢复 API Url 和 Secret Key）';
-
-  @override
-  String get onlySyncOnLaunch => '仅在启动时同步';
-
-  @override
-  String get other => '其他';
-
-  @override
-  String get participant => '参与者';
 
   @override
   String get passwd => '密码';
@@ -292,71 +91,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get privacyTip => '此 app 不搜集任何信息。';
 
   @override
-  String get profile => '配置';
-
-  @override
-  String get promptsSettingsItem => '提示词';
-
-  @override
-  String get quickShareTip => '在其他设备上打开此链接以快速导入当前配置';
-
-  @override
-  String get raw => '原始';
-
-  @override
-  String get refresh => '刷新';
-
-  @override
-  String get regExp => '正则表达式';
-
-  @override
-  String get remember30s => '记住 30 秒';
-
-  @override
   String get rename => '重命名';
-
-  @override
-  String get replay => '重放';
-
-  @override
-  String get replayTip => '会清空被重放的消息、后面所有消息';
-
-  @override
-  String get res => '资源';
-
-  @override
-  String restoreOpenaiTip(Object url) {
-    return '文档可以在 [这里]($url) 找到';
-  }
-
-  @override
-  String get rmDuplication => '删除重复';
-
-  @override
-  String rmDuplicationFmt(Object count) {
-    return '确定要删除 [$count]个重复项目吗？';
-  }
-
-  @override
-  String get route => '路由';
-
-  @override
-  String get save => '保存';
-
-  @override
-  String get saveErrChat => '保存聊天错误';
-
-  @override
-  String get saveErrChatTip => '在接收/发送每条消息后保存，即使有报错';
-
-  @override
-  String get scrollSwitchChat => '上下滑动切换聊天';
-
-  @override
-  String get search => '搜索';
-
-  @override
-  String get secretKey => '密钥';
 
   @override
   String get share => '分享';
@@ -365,13 +100,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get shareFrom => '分享自';
 
   @override
-  String get skipSameTitle => '跳过有与本地聊天相同标题的聊天';
-
-  @override
   String get softWrap => '自动换行';
-
-  @override
-  String get stt => '语音转文字';
 
   @override
   String sureRestoreFmt(Object time) {
@@ -379,15 +108,9 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
-  String get switcher => '开关';
-
-  @override
   String syncConflict(Object a, Object b) {
     return '冲突：不能同时开启 $a 和 $b';
   }
-
-  @override
-  String get system => '系统';
 
   @override
   String get text => '文字';
@@ -399,38 +122,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get themeMode => '主题模式';
 
   @override
-  String get thirdParty => '第三方';
-
-  @override
-  String get tool => '工具';
-
-  @override
-  String toolConfirmFmt(Object tool) {
-    return '是否同意使用工具 $tool ？';
-  }
-
-  @override
-  String get toolFinishTip => '工具调用完成';
-
-  @override
-  String toolHttpReqHelp(Object host) {
-    return '将会与从网络获取数据，本次将会联系 $host';
-  }
-
-  @override
-  String get toolHttpReqName => 'Http 请求';
-
-  @override
-  String get tts => '文字转语音';
-
-  @override
-  String get unsupported => '不支持';
-
-  @override
   String get untitled => '未命名';
-
-  @override
-  String get update => '更新';
 
   @override
   String get usage => '用法';
@@ -439,30 +131,211 @@ class AppLocalizationsZh extends AppLocalizations {
   String get user => '用户';
 
   @override
-  String weeksAgo(Object weeks) {
-    return '$weeks 周前';
+  String get trash => '回收站';
+
+  @override
+  String get startChatTip => '在下方选择模型，然后开始对话。';
+
+  @override
+  String get noProviderKey => '还没有任何服务商配置了 key，添加一个即可开始对话。';
+
+  @override
+  String get providers => '服务商';
+
+  @override
+  String providersCountFmt(int n) {
+    return '$n 个服务商';
   }
 
   @override
-  String get wrap => '换行';
+  String get today => '今天';
+
+  @override
+  String get earlier => '更早';
+
+  @override
+  String get now => '刚刚';
+
+  @override
+  String minutesFmt(int n) {
+    return '$n 分钟';
+  }
+
+  @override
+  String hoursFmt(int n) {
+    return '$n 小时';
+  }
+
+  @override
+  String messagesCountFmt(int n) {
+    return '$n 条消息';
+  }
+
+  @override
+  String get version => '版本';
+
+  @override
+  String get toolsAndMcp => '工具与 MCP';
+
+  @override
+  String get backToChats => '返回对话';
+
+  @override
+  String get genChatTitleTip => '在首次回复后为对话命名';
+
+  @override
+  String get scrollOnNewMsg => '新消息时滚动到底部';
+
+  @override
+  String get scrollAfterSwitch => '切换对话后滚动到底部';
+
+  @override
+  String chatsCountFmt(int n) {
+    return '$n 个对话';
+  }
+
+  @override
+  String get emptyTrashAfter => '清空回收站间隔';
+
+  @override
+  String get trashTip => '删除的对话会先放在这里';
+
+  @override
+  String daysFmt(int n) {
+    return '$n 天';
+  }
+
+  @override
+  String get sync => '同步';
+
+  @override
+  String get syncNow => '立即同步';
+
+  @override
+  String get syncing => '同步中…';
+
+  @override
+  String get neverSynced => '尚未同步';
+
+  @override
+  String lastSyncFmt(String time) {
+    return '上次同步：$time';
+  }
+
+  @override
+  String get syncOffTip => '在下方开启 LK Cloud、iCloud 或 WebDAV 以自动同步。';
+
+  @override
+  String get backupPassword => '备份密码';
+
+  @override
+  String get backupEncrypted => '备份将用它加密';
+
+  @override
+  String get backupNotEncrypted => '未设置：文件备份为明文，且同步需要密码';
+
+  @override
+  String get backupEncryptedTip => '此备份已加密';
+
+  @override
+  String get backupPasswordRequired => '请先设置备份密码：同步的备份始终加密';
+
+  @override
+  String get passwordWrong => '密码错误，或备份已损坏';
+
+  @override
+  String get backupTooNew => '此备份来自更新版本的应用，请更新后再恢复。';
+
+  @override
+  String get syncAppSettings => '同步应用设置';
+
+  @override
+  String get syncAppSettingsTip => '窗口大小和标题栏始终按设备保存';
+
+  @override
+  String get webdavManualTip => '在同步文件旁保存带日期的副本';
+
+  @override
+  String get exportFile => '导出到文件';
+
+  @override
+  String get importFile => '从文件恢复';
+
+  @override
+  String get copyBackup => '复制到剪贴板';
+
+  @override
+  String get pasteBackup => '从剪贴板恢复';
+
+  @override
+  String get pullNewChat => '下拉新建对话';
+
+  @override
+  String get releaseNewChat => '松开新建对话';
+
+  @override
+  String get pullOlderChat => '上拉并按住,切换到上一个对话';
+
+  @override
+  String holdOlderChatFmt(String title) {
+    return '继续按住:$title';
+  }
+
+  @override
+  String get shellTool => 'Shell';
+
+  @override
+  String get shellToolTip => '在本机运行命令，每条命令都需要你批准';
+
+  @override
+  String get linuxEnv => 'Linux 环境';
+
+  @override
+  String get linuxEnvTip => '手机上 Shell 运行的地方，无法访问手机自身的文件。';
+
+  @override
+  String linuxInstallTip(String distro, String version, int size) {
+    return '下载 $distro $version，$size MB？';
+  }
+
+  @override
+  String linuxRemoveTip(String name) {
+    return '删除 $name 及其中安装的所有内容？';
+  }
+
+  @override
+  String get linuxInUse => '有命令正在其中运行';
+
+  @override
+  String get linuxNone => '未安装';
+
+  @override
+  String get syncChats => '同步聊天';
+
+  @override
+  String get syncAi => '同步模型、工具和记忆';
+
+  @override
+  String get syncSecrets => '同步 API 密钥和 MCP 凭据';
+
+  @override
+  String get syncPasswordMismatch => '备份密码打不开此同步的密钥：另一台设备修改了密码';
+
+  @override
+  String get syncTooNew => '同步数据来自更新的版本：请更新以继续同步';
+
+  @override
+  String syncRefused(String reason) {
+    return 'LK Cloud 拒绝了同步（$reason）';
+  }
+
+  @override
+  String get rotateSyncKey => '更换同步密钥';
 }
 
 /// The translations for Chinese, as used in Taiwan (`zh_TW`).
 class AppLocalizationsZhTw extends AppLocalizationsZh {
   AppLocalizationsZhTw() : super('zh_TW');
-
-  @override
-  String get apiUrlV1Tip =>
-      '類似 https://api.openai.com/v1（需要最後的 /v1）。繼續使用該 URL 嗎？';
-
-  @override
-  String get assistant => '助手';
-
-  @override
-  String get attention => '注意';
-
-  @override
-  String get audio => '音訊';
 
   @override
   String get auto => '自動';
@@ -471,55 +344,16 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   String get autoCheckUpdate => '自動檢查更新';
 
   @override
-  String get autoRmDupChat => '自動刪除重複聊天';
-
-  @override
-  String get autoScrollBottom => '自動捲動到底部';
-
-  @override
   String get backupTip => '請確保備份檔案私密且安全！';
-
-  @override
-  String get balance => '餘額';
-
-  @override
-  String get calcTokenLen => '計算 Tokens 長度';
-
-  @override
-  String get changeModelTip => '不同密鑰可能能存取的模型列表不同，如果不了解機制並且出現錯誤，建議重新設置模型。';
 
   @override
   String get chat => '聊天';
 
   @override
-  String get chatHistoryLength => '聊天歷史長度';
-
-  @override
-  String get chatHistoryTip => '用作聊天上下文';
-
-  @override
-  String get clickSwitch => '點擊切換';
-
-  @override
   String get clickToCheck => '點擊檢查';
 
   @override
-  String get clipboard => '剪貼簿';
-
-  @override
   String get codeBlock => '程式碼區塊';
-
-  @override
-  String get colorSeedTip => '這是顏色種子，不是顏色';
-
-  @override
-  String get compress => '壓縮';
-
-  @override
-  String get compressImgTip => '用於聊天和分享';
-
-  @override
-  String get contributor => '貢獻者';
 
   @override
   String get copied => '已複製';
@@ -528,27 +362,12 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   String get current => '當前';
 
   @override
-  String get custom => '自定義';
-
-  @override
-  String get day => '天';
-
-  @override
-  String get defaulT => '預設';
-
-  @override
   String delFmt(Object id, Object type) {
     return '刪除 $type（$id）？';
   }
 
   @override
-  String get delete => '刪除';
-
-  @override
   String get deleteConfirm => '刪除前確認';
-
-  @override
-  String get editor => '編輯器';
 
   @override
   String emptyFields(Object fields) {
@@ -556,87 +375,18 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   }
 
   @override
-  String get emptyTrash => '清理回收站';
-
-  @override
   String get emptyTrashTip => '==0，下次啟動時刪除。<0 不自動刪除。';
-
-  @override
-  String fileNotFound(Object file) {
-    return '檔案（$file）未能找到';
-  }
-
-  @override
-  String fileTooLarge(Object size) {
-    return '檔案過大：$size';
-  }
-
-  @override
-  String get followChatModel => '跟隨聊天模型';
-
-  @override
-  String get fontSize => '字型大小';
-
-  @override
-  String get fontSizeSettingTip => '僅對程式碼區塊生效';
-
-  @override
-  String get freeCopy => '自由複製';
 
   @override
   String get genChatTitle => '生成聊天標題';
 
   @override
-  String get genTitle => '生成標題';
-
-  @override
-  String get headTailMode => '頭尾模式';
-
-  @override
-  String get headTailModeTip =>
-      '僅發送 `提示詞+第一條用戶訊息+當前輸入` 作為上下文。\n\n這在用於翻譯對話時特別有用（可以節省 tokens）。';
-
-  @override
-  String get help => '幫助';
-
-  @override
-  String get history => '歷史';
-
-  @override
-  String historyToolHelp(Object keywords) {
-    return '載入包含關鍵字 $keywords 的聊天作為上下文？';
-  }
-
-  @override
-  String get historyToolTip => '載入歷史聊天作為上下文';
-
-  @override
-  String get hour => '小時';
-
-  @override
-  String get httpToolTip => '發起 Http 請求，例如：搜索內容';
-
-  @override
-  String get ignoreContextConstraint => '忽略上下文限制';
-
-  @override
-  String get ignoreTip => '忽略提示';
-
-  @override
   String get image => '圖片';
-
-  @override
-  String initChatHelp(Object issue, Object unilink) {
-    return '### 📖 提示\n- 在聊天介面過度滑動（overscroll）可以快捷切換聊天歷史記錄\n- 長按聊天文字自由選中複製Markdown源\n- URL Scheme 用法可以在 [這裡]($unilink)\n\n### 🔍 幫助\n- 如果 GPT Box 有 bug，請使用 [Github Issue]($issue)\n- Telegram `@lpktg`';
-  }
 
   @override
   String invalidLinkFmt(Object uri) {
     return '未知連結：$uri';
   }
-
-  @override
-  String get joinBeta => '參與Beta版測試';
 
   @override
   String get languageName => '繁體中文';
@@ -648,82 +398,16 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   String get licenseMenuItem => '開放源碼許可';
 
   @override
-  String get list => '列表';
-
-  @override
   String get manual => '手動';
-
-  @override
-  String get memory => '記憶';
-
-  @override
-  String memoryAdded(Object str) {
-    return '記憶已添加: $str';
-  }
-
-  @override
-  String memoryTip(Object txt) {
-    return '記住 [$txt]?';
-  }
-
-  @override
-  String get message => '訊息';
-
-  @override
-  String get migrationV1UrlTip => '是否自動在配置的末尾添加\"/v1\"？';
-
-  @override
-  String get minute => '分鐘';
-
-  @override
-  String get model => '模型';
-
-  @override
-  String get modelRegExpTip => '如果模型名稱匹配，則使用 Tools';
 
   @override
   String get more => '更多';
 
   @override
-  String get multiModel => '多模態';
-
-  @override
   String get myOtherApps => '我的其它 App';
 
   @override
-  String get needOpenAIKey => '請先輸入 OpenAI 密鑰';
-
-  @override
-  String get needRestart => '需要重新啟動來應用';
-
-  @override
   String get newChat => '新建聊天';
-
-  @override
-  String get noDuplication => '沒有重複項目';
-
-  @override
-  String notSupported(Object val) {
-    return '$val 不支援';
-  }
-
-  @override
-  String get onMsgCome => '當有新訊息';
-
-  @override
-  String get onSwitchChat => '當切換對話時';
-
-  @override
-  String get onlyRestoreHistory => '僅恢復歷史聊天（不恢復 API Url 和 Secret Key）';
-
-  @override
-  String get onlySyncOnLaunch => '僅在啟動時同步';
-
-  @override
-  String get other => '其他';
-
-  @override
-  String get participant => '參與者';
 
   @override
   String get passwd => '密碼';
@@ -735,71 +419,7 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   String get privacyTip => '此 app 不蒐集任何資訊。';
 
   @override
-  String get profile => '設定';
-
-  @override
-  String get promptsSettingsItem => '提示詞';
-
-  @override
-  String get quickShareTip => '在其他裝置上打開此連結以快速導入當前配置。';
-
-  @override
-  String get raw => '原始';
-
-  @override
-  String get refresh => '重新整理';
-
-  @override
-  String get regExp => '正則表達式';
-
-  @override
-  String get remember30s => '記住 30 秒';
-
-  @override
   String get rename => '重新命名';
-
-  @override
-  String get replay => '重播';
-
-  @override
-  String get replayTip => '重播的訊息和所有後續訊息將被清除';
-
-  @override
-  String get res => '資源';
-
-  @override
-  String restoreOpenaiTip(Object url) {
-    return '文件可以在 [這裡]($url) 找到';
-  }
-
-  @override
-  String get rmDuplication => '刪除重複';
-
-  @override
-  String rmDuplicationFmt(Object count) {
-    return '確定要刪除 [$count]個重複項目嗎？';
-  }
-
-  @override
-  String get route => '路由';
-
-  @override
-  String get save => '儲存';
-
-  @override
-  String get saveErrChat => '儲存聊天錯誤';
-
-  @override
-  String get saveErrChatTip => '在接收/發送每條訊息後儲存，即使有報錯';
-
-  @override
-  String get scrollSwitchChat => '上下滑動切換聊天';
-
-  @override
-  String get search => '搜尋';
-
-  @override
-  String get secretKey => '密鑰';
 
   @override
   String get share => '分享';
@@ -808,13 +428,7 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   String get shareFrom => '分享自';
 
   @override
-  String get skipSameTitle => '跳過有與本地聊天相同標題的聊天';
-
-  @override
   String get softWrap => '自動換行';
-
-  @override
-  String get stt => '語音轉文字';
 
   @override
   String sureRestoreFmt(Object time) {
@@ -822,15 +436,9 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   }
 
   @override
-  String get switcher => '開關';
-
-  @override
   String syncConflict(Object a, Object b) {
     return '衝突：不能同時開啟 $a 和 $b';
   }
-
-  @override
-  String get system => '系統';
 
   @override
   String get text => '文字';
@@ -842,38 +450,7 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   String get themeMode => '主題模式';
 
   @override
-  String get thirdParty => '第三方';
-
-  @override
-  String get tool => '工具';
-
-  @override
-  String toolConfirmFmt(Object tool) {
-    return '是否同意使用工具 $tool ？';
-  }
-
-  @override
-  String get toolFinishTip => '工具調用完成';
-
-  @override
-  String toolHttpReqHelp(Object host) {
-    return '將會與從網路獲取數據，本次將會聯絡 $host';
-  }
-
-  @override
-  String get toolHttpReqName => 'Http 請求';
-
-  @override
-  String get tts => '文字轉語音';
-
-  @override
-  String get unsupported => '不支援';
-
-  @override
   String get untitled => '未命名';
-
-  @override
-  String get update => '更新';
 
   @override
   String get usage => '用法';
@@ -882,10 +459,204 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   String get user => '使用者';
 
   @override
-  String weeksAgo(Object weeks) {
-    return '$weeks 週前';
+  String get trash => '垃圾桶';
+
+  @override
+  String get startChatTip => '在下方選擇模型，然後開始對話。';
+
+  @override
+  String get noProviderKey => '還沒有服務商設定了金鑰。新增一個即可開始聊天。';
+
+  @override
+  String get providers => '服務商';
+
+  @override
+  String providersCountFmt(int n) {
+    return '$n 個服務商';
   }
 
   @override
-  String get wrap => '換行';
+  String get today => '今天';
+
+  @override
+  String get earlier => '更早';
+
+  @override
+  String get now => '剛剛';
+
+  @override
+  String minutesFmt(int n) {
+    return '$n 分鐘';
+  }
+
+  @override
+  String hoursFmt(int n) {
+    return '$n 小時';
+  }
+
+  @override
+  String messagesCountFmt(int n) {
+    return '$n 則訊息';
+  }
+
+  @override
+  String get version => '版本';
+
+  @override
+  String get toolsAndMcp => '工具與 MCP';
+
+  @override
+  String get backToChats => '返回對話';
+
+  @override
+  String get genChatTitleTip => '在首次回覆後為對話命名';
+
+  @override
+  String get scrollOnNewMsg => '新訊息時捲動到底部';
+
+  @override
+  String get scrollAfterSwitch => '切換對話後捲動到底部';
+
+  @override
+  String chatsCountFmt(int n) {
+    return '$n 個對話';
+  }
+
+  @override
+  String get emptyTrashAfter => '清空垃圾桶間隔';
+
+  @override
+  String get trashTip => '刪除的對話會先放在這裡';
+
+  @override
+  String daysFmt(int n) {
+    return '$n 天';
+  }
+
+  @override
+  String get sync => '同步';
+
+  @override
+  String get syncNow => '立即同步';
+
+  @override
+  String get syncing => '同步中…';
+
+  @override
+  String get neverSynced => '尚未同步';
+
+  @override
+  String lastSyncFmt(String time) {
+    return '上次同步：$time';
+  }
+
+  @override
+  String get syncOffTip => '在下方開啟 LK Cloud、iCloud 或 WebDAV 以自動同步。';
+
+  @override
+  String get backupPassword => '備份密碼';
+
+  @override
+  String get backupEncrypted => '備份將用它加密';
+
+  @override
+  String get backupNotEncrypted => '未設定：檔案備份為明文，且同步需要密碼';
+
+  @override
+  String get backupEncryptedTip => '此備份已加密';
+
+  @override
+  String get backupPasswordRequired => '請先設定備份密碼：同步的備份一律加密';
+
+  @override
+  String get passwordWrong => '密碼錯誤，或備份已損壞';
+
+  @override
+  String get backupTooNew => '此備份來自較新版本的應用程式，請更新後再還原。';
+
+  @override
+  String get syncAppSettings => '同步應用程式設定';
+
+  @override
+  String get syncAppSettingsTip => '視窗大小和標題列始終依裝置保存';
+
+  @override
+  String get webdavManualTip => '在同步檔案旁保存帶日期的副本';
+
+  @override
+  String get exportFile => '匯出到檔案';
+
+  @override
+  String get importFile => '從檔案還原';
+
+  @override
+  String get copyBackup => '複製到剪貼簿';
+
+  @override
+  String get pasteBackup => '從剪貼簿還原';
+
+  @override
+  String get pullNewChat => '下拉新建對話';
+
+  @override
+  String get releaseNewChat => '放開新建對話';
+
+  @override
+  String get pullOlderChat => '上拉並按住,切換到上一個對話';
+
+  @override
+  String holdOlderChatFmt(String title) {
+    return '繼續按住:$title';
+  }
+
+  @override
+  String get shellTool => 'Shell';
+
+  @override
+  String get shellToolTip => '在本機執行指令，每條指令都需要你核准';
+
+  @override
+  String get linuxEnv => 'Linux 環境';
+
+  @override
+  String get linuxEnvTip => '手機上 Shell 執行的地方，無法存取手機本身的檔案。';
+
+  @override
+  String linuxInstallTip(String distro, String version, int size) {
+    return '下載 $distro $version，$size MB？';
+  }
+
+  @override
+  String linuxRemoveTip(String name) {
+    return '刪除 $name 及其中安裝的所有內容？';
+  }
+
+  @override
+  String get linuxInUse => '有指令正在其中執行';
+
+  @override
+  String get linuxNone => '未安裝';
+
+  @override
+  String get syncChats => '同步聊天';
+
+  @override
+  String get syncAi => '同步模型、工具和記憶';
+
+  @override
+  String get syncSecrets => '同步 API 金鑰和 MCP 憑證';
+
+  @override
+  String get syncPasswordMismatch => '備份密碼打不開此同步的金鑰：另一台裝置修改了密碼';
+
+  @override
+  String get syncTooNew => '同步資料來自更新的版本：請更新以繼續同步';
+
+  @override
+  String syncRefused(String reason) {
+    return 'LK Cloud 拒絕了同步（$reason）';
+  }
+
+  @override
+  String get rotateSyncKey => '更換同步金鑰';
 }

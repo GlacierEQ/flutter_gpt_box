@@ -1,5 +1,5 @@
-display_name: GPT Box
-package_name: cn.lpkt.gptbox
+display_name: LLMBox
+package_name: com.lollipopkit.llmbox
 maintainer:
   name: lollipopkit
   email: 10864310+lollipopkit@users.noreply.github.com
@@ -23,7 +23,7 @@ keywords:
   - openai
   - ai
 
-generic_name: GPT Box
+generic_name: LLMBox
 
 categories:
   - Utility

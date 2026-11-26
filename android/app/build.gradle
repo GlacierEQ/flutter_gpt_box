@@ -12,6 +12,8 @@ if (localPropertiesFile.exists()) {
     }
 }
 
+def pinnedNdkVersion = rootProject.file('ndk-version.txt').text.trim()
+
 def keystoreProperties = new Properties()
 def keystorePropertiesFile = rootProject.file('key.properties')
 if (keystorePropertiesFile.exists()) {
@@ -29,17 +31,20 @@ if (flutterVersionName == null) {
 }
 
 android {
-    namespace "tech.lolli.flutter_gpt"
-    compileSdkVersion flutter.compileSdkVersion
-    ndkVersion flutter.ndkVersion
+    namespace = "com.lollipopkit.llmbox"
+    compileSdk = 36
+    // Also the NDK CI hands the native-asset hooks (ANDROID_NDK_HOME).
+    ndkVersion = pinnedNdkVersion
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
-    kotlinOptions {
-        jvmTarget = '1.8'
+    // Per module since AGP 9, which dropped the project-wide defaults.
+    // Needed for the per-build-type `app_name` resValue below.
+    buildFeatures {
+        resValues = true
     }
 
     sourceSets {
@@ -48,45 +53,67 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "tech.lolli.flutter_gpt"
+        applicationId = "com.lollipopkit.llmbox"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
-        minSdkVersion flutter.minSdkVersion
-        targetSdkVersion flutter.targetSdkVersion
-        versionCode flutterVersionCode.toInteger()
-        versionName flutterVersionName
+        minSdk = flutter.minSdkVersion
+        targetSdk = flutter.targetSdkVersion
+        versionCode = flutterVersionCode.toInteger()
+        versionName = flutterVersionName
+        // AppAuth's redirect receiver: `Lkc.redirectUrl`.
+        manifestPlaceholders += [appAuthRedirectScheme: 'llmbox']
     }
 
+    // The release key: android/app/llmbox.p12 (EC P-384, PKCS12, one
+    // password for store and key). Its password comes from the environment
+    // (ANDROID_KEYSTORE_PASSWORD), read from 1Password, locally and in CI:
+    // op://CI/llmbox-android-keystore/password, the file beside it as
+    // `keystore`. key.properties is only for a build set up by hand; neither
+    // is ever in the repository.
     signingConfigs {
         release {
-            keyAlias keystoreProperties['keyAlias']
-            keyPassword keystoreProperties['keyPassword']
-            storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
-            storePassword keystoreProperties['storePassword']
+            def password = System.getenv('ANDROID_KEYSTORE_PASSWORD') ?: keystoreProperties['storePassword']
+            keyAlias keystoreProperties['keyAlias'] ?: 'llmbox'
+            keyPassword keystoreProperties['keyPassword'] ?: password
+            storeFile file(keystoreProperties['storeFile'] ?: 'llmbox.p12')
+            storePassword password
+        }
+    }
+
+    packaging {
+        jniLibs {
+            // Extracted rather than mapped out of the APK: proot (fl_tty, for
+            // the shell tool) is executed as a file, and only the extracted
+            // native library directory may be executed from.
+            useLegacyPackaging = true
         }
     }
 
     buildTypes {
         release {
-            signingConfig signingConfigs.release
-            minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig = signingConfigs.release
+            minifyEnabled = true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt')
         }
 
         debug {
-            applicationIdSuffix '.debug'
-            resValue "string", "app_name", "GPTBoxD"
+            resValue "string", "app_name", "LLMBoxD"
         }
 
         profile {
-            applicationIdSuffix '.debug'
-            resValue "string", "app_name", "GPTBoxP"
+            resValue "string", "app_name", "LLMBoxP"
         }
     }
 }
 
+kotlin {
+    compilerOptions {
+        jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17
+    }
+}
+
 flutter {
-    source '../..'
+    source = '../..'
 }
 
 dependencies {}
